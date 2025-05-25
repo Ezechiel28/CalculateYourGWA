@@ -29,11 +29,18 @@
 
                 <div class="mb-3">
                     <label for="subjectCount" class="form-label">How many subjects?</label>
-                    <p class="text-danger">
-                        <small>Do not include the ff. subjects: ETS, RELIGION, NSTP 1 & 2, LLR, and MCS*</small>
-                    </p>
                     <input type="number" id="subjectCount" class="form-control" min="1" placeholder="Enter number of subjects" />
                 </div>
+
+                <p class="text-danger">
+                    <small>Do not include the ff. subjects:<br>
+                        &nbsp; &bull; ETS <br>
+                        &nbsp; &bull; RELIGION <br>
+                        &nbsp; &bull; NSTP 1 & 2 <br>
+                        &nbsp; &bull; LLR <br>
+                        &nbsp; &bull; MCS
+                    </small>
+                </p>
 
                 <div class="d-flex flex-wrap gap-2 mb-3 justify-content-center justify-content-md-start">
                     <button class="btn btn-primary flex-grow-1 flex-md-grow-0" onclick="generateInputs()">Generate Subject Fields</button>
@@ -108,6 +115,13 @@
                         <li><strong>Passed:</strong> GWA less than 3.00</li>
                         <li><strong>Barely Passed:</strong> GWA exactly 3.00</li>
                         <li><strong>Failed:</strong> GWA above 3.00</li>
+                    </ul>
+                    <hr />
+                    <h6>Additional Requirements for honors eligibility:</h6>
+                    <ul>
+                        <li>Must be a regular student (Taking the prescribed total units per semester)</li>
+                        <li>No academic deficiencies (UD, NFR, FRI, or F)</li>
+                        <li>No violations/serious offense</li>
                     </ul>
                     <hr />
                     <h6>Computation Mechanics</h6>
