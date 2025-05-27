@@ -23,7 +23,7 @@
 <body class="bg-light">
 
     <div class="container py-5">
-        <div class="card shadow-lg mx-auto" style="max-width: 700px;">
+        <div class="card shadow-lg mx-auto" style="max-width: 500px;">
             <div class="card-body">
                 <h2 class="card-title text-center mb-4">📚 Calculate Your GWA</h2>
 
@@ -235,18 +235,32 @@
 
                 if (numericGWA > 3.00) {
                     message += `<div class="alert alert-danger mt-3 text-center">❌ You FAILED the semester.</div>`;
-                } else if (numericGWA === 3.00) {
-                    message += `<div class="alert alert-warning mt-3 text-center">😅 You BARELY PASSED the semester.</div>`;
-                } else if (numericGWA >= 1.00 && numericGWA <= 1.20 && !hasGradeAbove175) {
-                    message += `<div class="alert alert-success mt-3 text-center">🎉 Congratulations! You are a <strong>President's Lister (PL)</strong>.</div>`;
-                } else if (numericGWA >= 1.21 && numericGWA <= 1.50 && !hasGradeAbove200) {
-                    message += `<div class="alert alert-primary mt-3 text-center">👏 Good job! You are a <strong>Dean's Lister (DL)</strong>.</div>`;
                 } else {
-                    message += `<div class="alert alert-info mt-3 text-center">👍 You PASSED the semester.</div>`;
+                    message += `<div class="alert alert-success mt-3 text-center">✅ You PASSED the semester.</div>`;
+
+                    // Check for DL or PL eligibility with disqualifying grades
+                    if (numericGWA <= 1.20 && hasGradeAbove175) {
+                        message += `
+                            <div class="alert alert-warning mt-3 text-center">
+                                ℹ️ Your GWA qualifies you for <strong>President's Lister</strong>, 
+                                but you are ineligible due to at least one grade above <strong>1.75</strong>.
+                            </div>`;
+                    } else if (numericGWA <= 1.50 && hasGradeAbove200) {
+                        message += `
+                            <div class="alert alert-warning mt-3 text-center">
+                                ℹ️ Your GWA qualifies you for <strong>Dean's Lister</strong>, 
+                                but you are ineligible due to at least one grade above <strong>2.00</strong>.
+                            </div>`;
+                    } else if (numericGWA <= 1.20) {
+                        message += `<div class="alert alert-primary mt-3 text-center">🎉 You qualified as a <strong>President's Lister</strong>!</div>`;
+                    } else if (numericGWA <= 1.50) {
+                        message += `<div class="alert alert-info mt-3 text-center">👏 You qualified as a <strong>Dean's Lister</strong>!</div>`;
+                    }
                 }
 
                 document.getElementById('resultContent').innerHTML = message;
-                new bootstrap.Modal(document.getElementById('resultModal')).show();
+                const resultModal = new bootstrap.Modal(document.getElementById('resultModal'));
+                resultModal.show();
             }
         }
 
